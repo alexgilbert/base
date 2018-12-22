@@ -1,19 +1,21 @@
-import sys
-sys.path.insert(0, '/development/base/lib/shelf')
-import shelf
+from lib.shelf import shelf
 
-class UserConnection(object):
-    file = 'data/user'
+class UserConnection:
     
-    def add(self, user):
+    @staticmethod
+    def add(user):
         user.locked = 0
         user.privilege = 1
-        data = shelf.open(self.file)
+        data = shelf.open('user')
         data[user.username] = user
         data.close()
-        
-    def findByUsername(self, username):
-        data = shelf.open(self.file)
-        user = data[username]
-        data.close()
-        return user
+    
+    @staticmethod
+    def find_by_username(username):
+        try:
+            data = shelf.open('user')
+            user = data[username]
+            data.close()
+            return user
+        except:
+            return object()

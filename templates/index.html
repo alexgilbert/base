@@ -1,2 +1,4 @@
 <div>Welcome to Gilbert Custom Apps</div>
-<a href="/login">Login</a>
+$if context.username == 'Guest': <a href="/login">Login</a>
+$else: <p>Hello, $context.username
+<span>You are logged in as <b>$context.username</b></span>
