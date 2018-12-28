@@ -9,12 +9,13 @@ web.config.debug = True
 app = web.application(urls, globals())
 
 store = web.session.DiskStore('sessions')
-session = web.session.Session(app, store, initializer={'login': 0, 'privilege': 0, 'username': 'Guest'})
+session = web.session.Session(app, store, initializer={'login': 0, 'privilege': 0, 'username': 'Guest', 'redirected': 0})
 web.config._session = session
 
 from controller.index_controller import *
 from controller.user_controller import *
 from controller.login_controller import *
+from controller.admin_controller import *
 
 render = web.template.render('templates/', globals={'context': session})
 

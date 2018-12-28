@@ -6,7 +6,7 @@ class Login:
     
     def GET(self):
         if logged():
-            web.redirect('/')
+            web.seeother('/')
         else:
             render = create_render(web.config._session.get('privilege'))
             return render.login()
@@ -14,22 +14,23 @@ class Login:
     def POST(self):
         data = web.input()
         try:
-            foundUser = UserConnection.findByUsername(data.username)
+            foundUser = UserConnection.find_by_username(data.username)
             if hashlib.sha256(("sAlT754-"+data.password).encode('utf-8')).hexdigest() == foundUser.password:
                 web.config._session.login = 1
                 web.config._session.username = foundUser.username
                 web.config._session.privilege = foundUser.privilege
                 render = create_render(web.config._session.get('privilege'))
-                raise web.seeother('/')                
-        except:
+                raise web.seeother('/')
+            else:
+                web.config._session.login = 0
+                web.config._session.privilege = 0
+                web.config._session.username = "Guest"
+                web.config._session.error = "Invalid Credentials"
+                render = create_render(web.config._session.get('privilege'))
+                return render.login()
+        except Exception as e:
+            print(e)
             print("Error Trying to Log In")
-        
-        web.config._session.login = 0
-        web.config._session.privilege = 0
-        web.config._session.username = "Guest"
-        web.config._session.error = "Invalid Credentials"
-        render = create_render(web.config._session.get('privilege'))
-        return render.login()
 
 
 class Reset:

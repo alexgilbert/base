@@ -1,37 +1,47 @@
 import web
+from .routes import *
 
 def my_loadhook():
-    print("my load hook")
-    web.config._session.error = ''
-    web.config._session.message = ''
+    reset = 1
+    if web.config._session.get('redirected') == 1:
+        reset = 0
+        web.config._session.redirected = 0
+    if reset == 1:
+        web.config._session.error = ''
+        web.config._session.message = ''
+    uri = get_request_uri()
+    if uri in admin_urls:
+        if web.config._session.get('privilege') != "2":
+            web.config._session.error = "You do not have permissions to view this page"
+            web.config._session.redirected = 1
+            raise web.seeother('/')
 
+
+def get_request_uri():
+    uri_split = web.ctx.env['REQUEST_URI'].split('/')
+    return "/" + uri_split[1]
+    
 
 def my_unloadhook():
     print ("my unload hook")
     
 
-def get_user_datafile():
-    session = web.config._session
-    if session.get('dev', False):
-        return '/developer/base/data/user_dev'
-    else:
-        return '/developer/base/data/user'
-    
-    
 def logged():
-    session = web.config._session
-    if session.get('login', False):
+    if web.config._session.get('login', False):
         return True
     else:
         return False
 
+
 def create_render(privilege):
-    if privilege == 0:
-        render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
-    elif privilege == 1:
-        render = web.template.render('templates/', base='user', globals={'context': web.config._session})
-    elif privilege == 2:
-        render = web.template.render('templates/', base='admin', globals={'context': web.config._session})
+    print("Privilege = " + privilege)
+    if privilege == "0":
+          render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
+    elif privilege == "1":
+          render = web.template.render('templates/', base='user', globals={'context': web.config._session})
+    elif privilege == "2":
+          print('hello')
+          render = web.template.render('templates/', base='privileged', globals={'context': web.config._session})
     else:
-        render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
+          render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
     return render

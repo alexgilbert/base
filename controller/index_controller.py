@@ -3,6 +3,9 @@ from conf.functions import *
 
 class index:
     def GET(self):
+        print("login: " + str(web.config._session.get('login')))
+        print("priv: " + str(web.config._session.get('privilege')))
+        print("username: " + str(web.config._session.get('username')))
         render = create_render(web.config._session.get('privilege'))
         return render.index()
     

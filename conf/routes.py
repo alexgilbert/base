@@ -2,8 +2,19 @@
 urls = (
     '/', 'index',
     '/addUser', 'addUser',
-    '/login', 'Login',
+    '/users', 'Users',
+    '/signin', 'Login',
+    '/del_user/(.*)', 'DeleteUser',
+    '/edit_user/(.*)', 'EditUser',
+    '/edit_user', 'UpdateUser',
     '/(js|css|fonts)/(.*)', 'static',
     '/images/(.*)','ImageDisplay',
-    '/logout', 'Reset'
+    '/logout', 'Reset',
+    '/admin', 'Admin'
     )
+
+admin_urls = [
+    '/admin',
+    '/users',
+    '/edit_user'
+    ]
