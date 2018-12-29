@@ -19,7 +19,11 @@ urls = (
     '/activate_app/(.*)', 'ActivateApp',
     '/deactivate_app/(.*)', 'DeactivateApp',
     '/edit_app/(.*)', 'EditApp',
-    '/edit_app', 'UpdateApp'
+    '/edit_app', 'UpdateApp',
+    '/add_app_to_user/(.*)', 'AddAppToUser',
+    '/add_app_to_user', 'AddAppToUser',
+    '/users_apps', 'UsersApps',
+    '/remove_app_from_user/(.*)/(.*)', 'RemoveAppFromUser'
     )
 
 admin_urls = [
@@ -34,5 +38,8 @@ admin_urls = [
     '/edit_app',
     '/del_app',
     '/activate_app',
-    '/deactivate_app'
+    '/deactivate_app',
+    '/add_app_to_user',
+    '/users_apps',
+    '/remove_app_from_user'
     ]

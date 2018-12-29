@@ -28,7 +28,6 @@ class UserConnection:
     def find_by_username(username):
         try:
             data = shelf.open('data/user_data', flag="r")
-            print(data['agilbert7911'])
             user = data[username]
             data.close()
             return user

@@ -1,5 +1,7 @@
 from conf.functions import *
+from connection.user_connection import UserConnection
 from connection.app_connection import AppConnection
+from connection.user_app_connection import UserAppConnection
 import hashlib
 
 class AddApp:
@@ -76,6 +78,9 @@ class DeleteApp:
     
     def GET(self, name):
         success = AppConnection.del_by_name(name)
+        users = UserConnection.get_users()
+        for user in users:
+            UserAppConnection.remove_app_from_user(user.username,name)
         if success == 1:
             web.config._session.message = name + " Successfully Deleted"
         else:
@@ -88,6 +93,9 @@ class DeactivateApp:
     
     def GET(self, name):
         success = AppConnection.deactivate_by_name(name)
+        users = UserConnection.get_users()
+        for user in users:
+            UserAppConnection.remove_app_from_user(user.username,name)
         if success == 1:
             web.config._session.message = name + " Successfully Deactivated"
         else:

@@ -40,7 +40,6 @@ def create_render(privilege):
     elif privilege == "1":
           render = web.template.render('templates/', base='user', globals={'context': web.config._session})
     elif privilege == "2":
-          print('hello')
           render = web.template.render('templates/', base='privileged', globals={'context': web.config._session})
     else:
           render = web.template.render('templates/', base='reader', globals={'context': web.config._session})

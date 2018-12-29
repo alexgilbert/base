@@ -1,0 +1,41 @@
+$def with (users_apps)
+
+<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">Users Apps</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <div>
+      <table>
+        <tr>
+          <th>User</th>
+          <th>Apps</th>
+          <th></th>
+        </tr>
+        $for i, user in enumerate(users_apps):
+          <tr>
+            <td>$user</td>
+            <td>
+                <table>
+                  $for app in users_apps[user]:
+                    <tr>
+                      <td>$app</td>
+                      <td>
+                        <form action="/remove_app_from_user/$user/$app" method="get">
+                          <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                          <i class="fa fa-remove"></i>
+                          </button>
+                        </form> 
+                      </td>
+                    </tr>
+                </table> 
+            </td>
+            <td>
+              <form action="/add_app_to_user/$user" method="get">
+                <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                  <i class="fa fa-plus"></i> 
+                </button>
+              </form>
+            </td>
+          </tr>
+      </table>    
+    </div>
+</div>
