@@ -16,6 +16,7 @@ from controller.index_controller import *
 from controller.user_controller import *
 from controller.login_controller import *
 from controller.admin_controller import *
+from controller.app_controller import *
 
 render = web.template.render('templates/', globals={'context': session})
 

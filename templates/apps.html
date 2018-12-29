@@ -1,0 +1,52 @@
+$def with (apps)
+
+<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">Apps</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p><a href="/add_app" >Add App</a></p>
+    <div>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>URL</th>
+          <th></th>
+          <th></th>
+	  <th></th>
+        </tr>
+        $for app in apps:
+          <tr>
+            <td>$app['name']</td>
+            <td>$app['url']</td>
+            <td>
+              <form action="/edit_app/$app['name']" method="get">
+                <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                  <i class="fa fa-edit"></i>Edit 
+                </button>
+              </form>
+            </td>
+            <td>
+              <form action="/del_app/$app['name']" method="get">
+                <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                  <i class="fa fa-remove"></i>Remove 
+                </button>
+              </form>
+            </td>
+            <td>
+              $if app['active'] == "1":
+                  <form action="/deactivate_app/$app['name']" method="get">
+                      <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                        <i class="fa fa-toggle-on"></i>
+                 </button>
+                 </form>
+             $if app['active'] == "0":
+                 <form action="/activate_app/$app['name']" method="get">
+
+                   <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                     <i class="fa fa-toggle-off"></i>
+                   </button>
+                 </form>
+	    </td>
+          </tr>
+      </table>    
+    </div>
+</div>
