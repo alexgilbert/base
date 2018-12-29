@@ -12,13 +12,17 @@ $def with (users)
           <th>Privilege</th>
           <th></th>
           <th></th>
+	  <th></th>
         </tr>
         $for user in users:
           <tr>
             <td>$user['username']</td>
             <td>$user['first']</td>
             <td>$user['last']</td>
-            <td>$user['privilege']</td>
+            <td>
+               $if user['privilege'] == "2": Admin
+               $else: User
+            </td>
             <td>
               <form action="/edit_user/$user['username']" method="get">
                 <button class="w3-button w3-light-grey w3-padding-large w3-section">
@@ -33,6 +37,20 @@ $def with (users)
                 </button>
               </form>
             </td>
+            <td>
+              $if user['locked'] == "1":
+                  <form action="/unlock_user/$user['username']" method="get">
+                      <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                        <i class="fa fa-unlock-alt"></i>Unlock
+                 </button>
+                 </form>
+             $if user['locked'] == "0":
+                 <form action="/lock_user/$user['username']" method="get">
+                   <button class="w3-button w3-light-grey w3-padding-large w3-section">
+                     <i class="fa fa-lock"></i>Lock
+                   </button>
+                 </form>
+	    </td>
           </tr>
       </table>    
     </div>

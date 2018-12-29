@@ -15,16 +15,17 @@ class Login:
         data = web.input()
         try:
             foundUser = UserConnection.find_by_username(data.username)
-            if hashlib.sha256(("sAlT754-"+data.password).encode('utf-8')).hexdigest() == foundUser.password:
+            if foundUser.locked == "1":
+                web.config._session.error = "Account is Locked"
+                render = create_render(web.config._session.get('privilege'))
+                return render.login()
+            elif hashlib.sha256(("sAlT754-"+data.password).encode('utf-8')).hexdigest() == foundUser.password:
                 web.config._session.login = 1
                 web.config._session.username = foundUser.username
                 web.config._session.privilege = foundUser.privilege
                 render = create_render(web.config._session.get('privilege'))
                 raise web.seeother('/')
             else:
-                web.config._session.login = 0
-                web.config._session.privilege = 0
-                web.config._session.username = "Guest"
                 web.config._session.error = "Invalid Credentials"
                 render = create_render(web.config._session.get('privilege'))
                 return render.login()

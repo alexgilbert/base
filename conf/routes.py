@@ -5,6 +5,8 @@ urls = (
     '/users', 'Users',
     '/signin', 'Login',
     '/del_user/(.*)', 'DeleteUser',
+    '/lock_user/(.*)', 'LockUser',
+    '/unlock_user/(.*)', 'UnlockUser',
     '/edit_user/(.*)', 'EditUser',
     '/edit_user', 'UpdateUser',
     '/(js|css|fonts)/(.*)', 'static',
@@ -16,5 +18,8 @@ urls = (
 admin_urls = [
     '/admin',
     '/users',
-    '/edit_user'
+    '/edit_user',
+    '/del_user',
+    '/lock_user',
+    '/unlock_user'
     ]

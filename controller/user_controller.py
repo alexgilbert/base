@@ -81,4 +81,28 @@ class DeleteUser:
         else:
             web.config._session.error = "Error: Unable to delete " + username
         web.config._session.redirected = 1
-        raise web.seeother('/users')    
+        raise web.seeother('/users')
+    
+
+class LockUser:
+    
+    def GET(self, username):
+        success = UserConnection.lock_by_username(username)
+        if success == 1:
+            web.config._session.message = username + " Successfully Locked"
+        else:
+            web.config._session.error = "Error: Unable to lock " + username
+        web.config._session.redirected = 1
+        raise web.seeother('/users')
+
+
+class UnlockUser:
+    
+    def GET(self, username):
+        success = UserConnection.unlock_by_username(username)
+        if success == 1:
+            web.config._session.message = username + " Successfully Unlocked"
+        else:
+            web.config._session.error = "Error: Unable to unlock " + username
+        web.config._session.redirected = 1
+        raise web.seeother('/users')

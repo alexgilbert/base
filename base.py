@@ -9,7 +9,7 @@ web.config.debug = True
 app = web.application(urls, globals())
 
 store = web.session.DiskStore('sessions')
-session = web.session.Session(app, store, initializer={'login': 0, 'privilege': 0, 'username': 'Guest', 'redirected': 0})
+session = web.session.Session(app, store, initializer={'login': 0, 'privilege': "0", 'username': 'Guest', 'redirected': 0})
 web.config._session = session
 
 from controller.index_controller import *

@@ -34,7 +34,7 @@ def logged():
 
 
 def create_render(privilege):
-    print("Privilege = " + privilege)
+    privilege = str(privilege)
     if privilege == "0":
           render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
     elif privilege == "1":
