@@ -1,13 +1,18 @@
 import web, os
 from conf.functions import *
+from connection.user_app_connection import UserAppConnection
+from connection.app_connection import AppConnection
 
 class index:
     def GET(self):
-        print("login: " + str(web.config._session.get('login')))
-        print("priv: " + str(web.config._session.get('privilege')))
-        print("username: " + str(web.config._session.get('username')))
         render = create_render(web.config._session.get('privilege'))
-        return render.index()
+        apps = []
+        if logged():
+            user_apps = UserAppConnection.find_apps_by_username(web.config._session.get('username'))
+            for user_app in user_apps:
+                app = AppConnection.find_by_name(user_app)
+                apps.append(app)
+        return render.index(apps)
     
 
 class static:

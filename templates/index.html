@@ -1,4 +1,14 @@
+$def with (apps)
+
 <div>Welcome to Gilbert Custom Apps</div>
-$if context.username == 'Guest': <a href="/login">Login</a>
-$else: <p>Hello, $context.username
-<span>You are logged in as <b>$context.username</b></span>
+$if context.username == 'Guest': <a href="/signin">Login</a>
+$else: <p>Hello, $context.username</>
+
+$if apps:
+    $for app in apps: 
+      <a href="$app.url">
+        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
+          <li class="w3-dark-grey w3-xlarge w3-padding-32">$app.name</li>
+          <li class="w3-padding-16">$app.type</li>
+        </ul>
+      </a>

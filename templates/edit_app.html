@@ -5,9 +5,14 @@ $def with (app)
     <hr style="width:200px" class="w3-opacity">
     <form name="edit_user"  action="/edit_app" method="post" >
     <div>
-        <p><input class="w3-input w3-padding-16" type="text" required name="name" value="$app.name" ></p>
-        <p><input class="w3-input w3-padding-16" type="text" required name="url" value="$app.url" ></p>
-        <p><input class="w3-input w3-padding-16" type="text" required name="active" value="$app.active" ></p>
+        <p><input class="w3-input w3-padding-16" type="text" required name="name" value="$app.name" /></p>
+        <p><select class="w3-input w3-padding-16" name="type">
+             <option value="Game">Game</option>
+             <option value="Automation">Automation</option>
+             <option value="Surveillance">Surveillance</option>
+        </select></p>
+        <p><input class="w3-input w3-padding-16" type="text" required name="url" value="$app.url" /></p>
+        <input type="hidden" name="active" value="$app.active" />
         <input type="hidden" name="existing" value="$app.name" /> 
         <button class="w3-button w3-light-grey w3-padding-large" type="submit">Submit</button>
     </div>
