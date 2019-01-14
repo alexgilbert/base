@@ -1,6 +1,6 @@
-from conf.functions import *
-from connection.user_connection import UserConnection
 import hashlib
+from functions import *
+from user_connection import UserConnection
 
 class Admin:
     

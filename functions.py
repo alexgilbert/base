@@ -1,5 +1,5 @@
-import web
-from .routes import *
+import web, sys
+from routes import *
 
 def my_loadhook():
     reset = 1
@@ -36,11 +36,11 @@ def logged():
 def create_render(privilege):
     privilege = str(privilege)
     if privilege == "0":
-          render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
+          render = web.template.render('/development/base/templates', base='reader', globals={'context': web.config._session})
     elif privilege == "1":
-          render = web.template.render('templates/', base='user', globals={'context': web.config._session})
+          render = web.template.render('/development/base/templates', base='user', globals={'context': web.config._session})
     elif privilege == "2":
-          render = web.template.render('templates/', base='privileged', globals={'context': web.config._session})
+          render = web.template.render('/development/base/templates', base='privileged', globals={'context': web.config._session})
     else:
-          render = web.template.render('templates/', base='reader', globals={'context': web.config._session})
+          render = web.template.render('/development/base/templates', base='reader', globals={'context': web.config._session})
     return render

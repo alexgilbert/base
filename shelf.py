@@ -59,6 +59,7 @@ the persistent dictionary on disk, if feasible).
 from pickle import Pickler, Unpickler
 from io import BytesIO
 
+import collections
 import collections.abc
 
 __all__ = ["Shelf", "BsdDbShelf", "DbfilenameShelf", "open"]

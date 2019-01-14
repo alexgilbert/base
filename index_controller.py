@@ -1,7 +1,7 @@
 import web, os
-from conf.functions import *
-from connection.user_app_connection import UserAppConnection
-from connection.app_connection import AppConnection
+from functions import *
+from user_app_connection import UserAppConnection
+from app_connection import AppConnection
 
 class index:
     def GET(self):
@@ -11,8 +11,11 @@ class index:
             user_apps = UserAppConnection.find_apps_by_username(web.config._session.get('username'))
             for user_app in user_apps:
                 app = AppConnection.find_by_name(user_app)
-                apps.append(app)
-        return render.index(apps)
+                if hasattr(app, 'name'):
+                    apps.append(app)
+            return render.index(apps)
+        else:
+            web.seeother('/signin')
     
 
 class static:

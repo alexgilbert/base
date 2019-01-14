@@ -1,8 +1,7 @@
 import web, sys
 sys.path.insert(0, '')
-from conf.functions import *
-from conf.routes import *
-
+from functions import *
+from routes import *
 
 web.config.debug = True
 
@@ -12,14 +11,14 @@ store = web.session.DiskStore('sessions')
 session = web.session.Session(app, store, initializer={'login': 0, 'privilege': "0", 'username': 'Guest', 'redirected': 0})
 web.config._session = session
 
-from controller.index_controller import *
-from controller.user_controller import *
-from controller.login_controller import *
-from controller.admin_controller import *
-from controller.app_controller import *
-from controller.user_app_controller import *
+from index_controller import *
+from user_controller import *
+from login_controller import *
+from admin_controller import *
+from app_controller import *
+from user_app_controller import *
 
-render = web.template.render('templates/', globals={'context': session})
+render = web.template.render('/development/base/templates', globals={'context': session})
 
 app.add_processor(web.loadhook(my_loadhook))
 app.add_processor(web.unloadhook(my_unloadhook))

@@ -1,18 +1,18 @@
-from lib.shelf import shelf
+import shelf
 
 class AppConnection:
     
     @staticmethod
     def add(app):
         app.active = "1"
-        data = shelf.open('data/app_data')
+        data = shelf.open('/development/base/data/app_data')
         data[app.name] = app
         data.close()
         
     @staticmethod
     def update(app):
         try:
-            data = shelf.open('data/app_data')
+            data = shelf.open('/development/base/data/app_data')
             del data[app.existing]
             del app['existing']
             data[app.name] = app
@@ -25,7 +25,7 @@ class AppConnection:
     @staticmethod
     def find_by_name(name):
         try:
-            data = shelf.open('data/app_data', flag="r")
+            data = shelf.open('/development/base/data/app_data', flag="r")
             app = data[name]
             data.close()
             return app
@@ -35,7 +35,7 @@ class AppConnection:
     @staticmethod
     def find_by_url(url):
         try:
-            data = shelf.open('data/app_data', flag="r")
+            data = shelf.open('/development/base/data/app_data', flag="r")
             for key in data:
                 app = data[key]
                 if app['url'] == url:
@@ -47,7 +47,7 @@ class AppConnection:
     @staticmethod
     def del_by_name(name):
         try:
-            data = shelf.open('data/app_data')
+            data = shelf.open('/development/base/data/app_data')
             del data[name]
             data.close()
             return 1
@@ -58,7 +58,7 @@ class AppConnection:
     @staticmethod
     def set_active_by_name(name, active):
         try:
-            data = shelf.open('data/app_data')
+            data = shelf.open('/development/base/data/app_data')
             app = data[name]
             app.active = str(active)
             data[name] = app
@@ -79,7 +79,7 @@ class AppConnection:
     @staticmethod
     def get_apps():
         try:
-            data = shelf.open('data/app_data', flag="r")
+            data = shelf.open('/development/base/data/app_data', flag="r")
             apps = []
             for key in data:
                 apps.append(data[key])

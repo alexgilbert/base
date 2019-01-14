@@ -1,6 +1,6 @@
 import hashlib, web
-from conf.functions import *
-from connection.user_connection import UserConnection
+from functions import *
+from user_connection import UserConnection
 
 class Login:
     

@@ -1,8 +1,8 @@
-from conf.functions import *
-from connection.user_connection import UserConnection
-from connection.app_connection import AppConnection
-from connection.user_app_connection import UserAppConnection
 import hashlib
+from functions import *
+from user_connection import UserConnection
+from app_connection import AppConnection
+from user_app_connection import UserAppConnection
 
 class AddApp:
     

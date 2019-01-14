@@ -1,4 +1,4 @@
-from lib.shelf import shelf
+import shelf
 
 class UserConnection:
     
@@ -7,14 +7,14 @@ class UserConnection:
         user.locked = "0"
         user.privilege = "1"
         del user.confirm
-        data = shelf.open('data/user_data')
+        data = shelf.open('/development/base/data/user_data')
         data[user.username] = user
         data.close()
     
     @staticmethod
     def update(user):
         try:
-            data = shelf.open('data/user_data')
+            data = shelf.open('/development/base/data/user_data')
             del data[user.existing]
             del user['existing']
             data[user.username] = user
@@ -27,7 +27,7 @@ class UserConnection:
     @staticmethod
     def find_by_username(username):
         try:
-            data = shelf.open('data/user_data', flag="r")
+            data = shelf.open('/development/base/data/user_data', flag="r")
             user = data[username]
             data.close()
             return user
@@ -37,7 +37,7 @@ class UserConnection:
     @staticmethod
     def del_by_username(username):
         try:
-            data = shelf.open('data/user_data')
+            data = shelf.open('/development/base/data/user_data')
             del data[username]
             data.close()
             return 1
@@ -48,7 +48,7 @@ class UserConnection:
     @staticmethod
     def set_lock_by_username(username, lock):
         try:
-            data = shelf.open('data/user_data')
+            data = shelf.open('/development/base/data/user_data')
             user = data[username]
             user.locked = str(lock)
             data[username] = user
@@ -69,7 +69,7 @@ class UserConnection:
     @staticmethod
     def get_users():
         try:
-            data = shelf.open('data/user_data', flag="r")
+            data = shelf.open('/development/base/data/user_data', flag="r")
             users = []
             for key in data:
                 users.append(data[key])

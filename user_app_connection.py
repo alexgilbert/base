@@ -1,11 +1,11 @@
-from lib.shelf import shelf
+import shelf
 
 class UserAppConnection:
     
     @staticmethod
     def add_app_to_user(username, app):
         try:
-            data = shelf.open('data/user_app_data')
+            data = shelf.open('/development/base/data/user_app_data')
             if username in data:
                 userApps = data[username]
                 userApps.add(app)
@@ -22,7 +22,7 @@ class UserAppConnection:
     @staticmethod
     def find_apps_by_username(username):
         try:
-            data = shelf.open('data/user_app_data', flag="r")
+            data = shelf.open('/development/base/data/user_app_data', flag="r")
             apps = data[username]
             data.close()
             return apps
@@ -32,7 +32,7 @@ class UserAppConnection:
     @staticmethod
     def remove_app_from_user(username, app):
         try:
-            data = shelf.open('data/user_app_data')
+            data = shelf.open('/development/base/data/user_app_data')
             if username in data:
                 apps = data[username]
                 apps.remove(app)
