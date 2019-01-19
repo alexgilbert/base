@@ -1,0 +1,16 @@
+$def with (apps)
+
+<br/>
+<br/>
+<div>Welcome to Gilbert Custom Apps</div>
+$if context.username == 'Guest': <a href="/signin">Login</a>
+$else: <p>Hello, $context.username</>
+
+$if apps:
+    $for app in apps: 
+        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
+          <li class="w3-dark-grey w3-xlarge w3-padding-10">$app.name</li>
+          <li class="w3-padding-5">$app.type</li>
+        </ul>
+        <iframe src="$app.url" width="100%" height="50%" frameborder="0" allowfullscreen ></iframe>
+

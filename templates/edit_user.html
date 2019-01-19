@@ -1,0 +1,19 @@
+$def with (user)
+
+<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">Edit Users</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <form name="edit_user"  action="/edit_user" method="post" >
+    <div>
+        <p><input class="w3-input w3-padding-16" type="text" required name="username" value="$user.username" ></p>
+        <p><input class="w3-input w3-padding-16" type="text" required name="first" value="$user.first" ></p>
+        <p><input class="w3-input w3-padding-16" type="text" required name="last" value="$user.last" ></p>
+        <p><input class="w3-input w3-padding-16" type="password" placeholder="Password" required name="password"></p>
+        <p><input class="w3-input w3-padding-16" type="password" placeholder="Confirm Password" required name="confirm"></p>
+        <p><input class="w3-input w3-padding-16" type="text" required name="privilege" value="$user.privilege" ></p>
+        <input type="hidden" name="locked" value="$user.locked" />
+        <input type="hidden" name="existing" value="$user.username" /> 
+        <button class="w3-button w3-light-grey w3-padding-large" type="submit">Submit</button>
+    </div>
+</form>
+</div>

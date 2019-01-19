@@ -1,0 +1,18 @@
+$def with (user, apps)
+
+<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">Add App to User</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <form action="/add_app_to_user" name="add_app_to_user" method="post" >
+    <div>
+        <input class="w3-input w3-padding-16" type="hidden" required name="username" value="$user" />
+        <p><select class="w3-input w3-padding-16" name="app">
+           $for app in apps:
+             $if app.active == "1":
+               <option value="$app.name">$app.name</option>
+	   </select>
+        </p>
+        <button class="w3-button w3-light-grey w3-padding-large" type="submit">Submit</button>
+    </div>
+</form>
+</div>
