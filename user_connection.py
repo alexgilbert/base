@@ -14,14 +14,19 @@ class UserConnection:
     @staticmethod
     def update(user):
         try:
+            print("updateing user")
+            print(user)
             data = shelf.open('/development/base/data/user_data')
+            old_user = data[user.existing]
             del data[user.existing]
             del user['existing']
+            print(user)
             data[user.username] = user
             data.close
             return 1
         except Exception as e:
             print(e)
+            add(old_user)
             return 0
         
     @staticmethod
