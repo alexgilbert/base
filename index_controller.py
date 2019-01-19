@@ -54,7 +54,6 @@ class ImageDisplay(object):
             "gif":"images/gif",
             "ico":"images/x-icon"
             }
-
         if name in os.listdir('/development/base/images'):  # Security
             web.header("Content-Type", cType[ext]) # Set the Header
             return open('/development/base/images/%s'%name,"rb").read() # Notice 'rb' for reading images

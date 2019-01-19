@@ -27,12 +27,20 @@ class UserConnection:
     @staticmethod
     def find_by_username(username):
         try:
+<<<<<<< HEAD
             data = shelf.open('/development/base/data/user_data')
             user = data[username]
             data.close()
             return user
         except Exception as e:
             print(e)
+=======
+            data = shelf.open('/development/base/data/user_data', flag="r")
+            user = data[username]
+            data.close()
+            return user
+        except:
+>>>>>>> 213d1507449913f0a8b3b8efa2bbf48df8b52c2d
             return object()
     
     @staticmethod

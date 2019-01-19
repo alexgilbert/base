@@ -37,5 +37,5 @@ class Reset:
 
     def GET(self):
         web.ctx.session.login = 0
-        web.ctx.session.kill()
+        web.ctx.session.k
         raise web.seeother('/')
